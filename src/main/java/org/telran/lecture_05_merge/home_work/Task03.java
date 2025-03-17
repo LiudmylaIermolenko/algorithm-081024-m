@@ -17,6 +17,7 @@ package org.telran.lecture_05_merge.home_work;
 // Пояснение:
     // Возможен такой порядок: 10 2 50 1 10
 
+import java.util.Arrays;
 
 import java.util.Arrays;
 
@@ -24,6 +25,7 @@ import static org.telran.lecture_05_merge.practice.MergeSort.mergeSort;
 
 public class Task03 {
     public static void main(String[] args) {
+<<<<<<< HEAD
         int[] prices = {10, 2, 50, 1, 10, 30, 7};
         int[] sortedPrices = mergeSort(prices);
         System.out.println(Arrays.toString(sortedPrices));
@@ -43,6 +45,19 @@ public class Task03 {
 //        }
 
         System.out.println("Максимальная сумма чека: " + sum);
+=======
+        int[] prices = {2, 1, 10, 50, 10, 22, 2}; // Цены товаров которые вы купили
+        System.out.println(getMaxDiscountedTotal(prices));
+    }
+
+    public static int getMaxDiscountedTotal(int[] prices) {
+        Arrays.sort(prices);
+        int sum = 0;
+        for (int i = prices.length / 2; i < prices.length; i++) {
+            sum += prices[i];
+        }
+        return sum;
+>>>>>>> origin/main
     }
 }
 //  // Рекурсивно вызываем mergeSort() для левой и правой частей.
