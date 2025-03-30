@@ -17,4 +17,24 @@ package org.telran.lecture_8_st_and_qu.practice;
 // Пояснение: будут видны все элементы, так как они расположены по возрастанию
 
 public class Heights {
+    public static void main(String[] args) {
+        //Ex 1
+        int[] heights1 = {8, 2, 3, 11, 11, 10};
+        System.out.println(countVisibleBuildings(heights1));
+
+        //Ex 2
+        int[] heights2 = {12, 20, 39, 45, 89};
+        System.out.println(countVisibleBuildings(heights2));
+    }
+    public static int countVisibleBuildings(int[] heights){
+        int visibleCount = 0;
+        int maxHeight = 0;
+        for (int height : heights){
+            if (height > maxHeight){
+                visibleCount ++;
+                maxHeight = height;
+            }
+        }
+        return visibleCount;
+    }
 }
