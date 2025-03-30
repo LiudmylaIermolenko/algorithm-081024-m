@@ -1,5 +1,7 @@
 package org.telran.lecture_8_st_and_qu.stack;
 
+import java.util.EmptyStackException;
+
 public class ClassicStack {
 
     private final int[] data;
@@ -15,10 +17,10 @@ public class ClassicStack {
     // push elements to the top of stack
     public void push(int x) {
         if (isFull()) {
-            System.out.println("Stack OverFlow");
+            throw new Error("Stack OverFlow");
         } else {
             // insert element on top of stack
-            System.out.println("Inserting " + x);
+            //System.out.println("Inserting " + x);
             data[++top] = x;
         }
     }
@@ -27,8 +29,7 @@ public class ClassicStack {
     public int pop() {
         // if stack is empty no element to pop
         if (isEmpty()) {
-            System.out.println("Stack is empty");
-            return -1;
+            throw new Error("Stack is empty");
         }
         // pop element from top of stack
         return data[top--];
@@ -50,9 +51,8 @@ public class ClassicStack {
     }
 
     public int peek() {
-        if (top < 0) {
-            System.out.println("Stack Underflow");
-            return -1;
+        if (isEmpty()) {
+            throw new Error("Stack Underflow");
         } else {
             return data[top];
         }
@@ -63,6 +63,7 @@ public class ClassicStack {
         for (int i = 0; i <= top; i++) {
             System.out.print(data[i] + " ");
         }
+        System.out.println("<-- top");
     }
 }
 
