@@ -52,7 +52,7 @@ public class ClassicStack {
 
     public int peek() {
         if (isEmpty()) {
-            throw new Error("Stack Underflow");
+            throw new Error("Stack is empty");
         } else {
             return data[top];
         }
