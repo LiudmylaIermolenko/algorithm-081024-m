@@ -31,7 +31,7 @@ public class MyLinkedList {
         Integer removed = myList.removeAt(0);
         System.out.println("Удален элемент: " + removed);
         System.out.println("Список после удаления первого элемента:");
-        myList.print(); // Ожидаемый вывод: 2 -> 3 -> 4 -> null
+        myList.print(); // Ожидаемый вывод: 1->2 -> 3 -> 4 -> null
 
         // Удаление элемента по индексу 1 (удаление второго элемента, который теперь в индексе 1)
         removed = myList.removeAt(1);
@@ -146,38 +146,37 @@ class LinkedList {
 
     // Удаление первого! элемента по значению
     public Integer remove(int data) {
-        if (head == null) return null;
-
-        // If head node contains the data/Удаление элемента в начале списка:
-        if (head.data == data) {
-            head = head.next;
-            if (head == null) {  // If the list is now empty
-                tail = null;
-            }
-            size--;
-            return data;
-        }
-        //Поиск элемента в списке:
         Node current = head;
         Node previous = null;
+
+        // Поиск элемента в списке
         while (current != null && current.data != data) {
             previous = current;
             current = current.next;
         }
 
+        // Если элемент не найден
         if (current == null) {
-            return null;  // Element not found
+            return null;
         }
 
-        // If it's the tail node/Если удаляемый элемент — это последний элемент в списке
-        if (current == tail) {
-            tail = previous;
+        // Если элемент находится в начале списка
+        if (previous == null) {
+            head = current.next;
+            if (head == null) { // Если список стал пустым
+                tail = null;
+            }
+        } else {
+            previous.next = current.next;
+            if (current == tail) { // Если элемент был последним
+                tail = previous;
+            }
         }
 
-        previous.next = current.next;
         size--;
         return current.data;
     }
+
 
     // Удаление элемента по индексу
     public Integer removeAt(int index) {
