@@ -1,6 +1,7 @@
 package org.telran.lecture_10_greedy_algo.examples;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -36,21 +37,28 @@ public class ActivityGreed {
 
         List<Activity> selectedActivities = selectActivity(activities);
         print(selectedActivities);
+
+//        print(activities);
+//        System.out.println("------");
     }
 
     public static List<Activity> selectActivity(List<Activity> allActivities) {
-        // TODO: проанализируйте код функции и найдите недостатки реализации
-        //  Подсказка: побочные эффекты
-        allActivities.sort(Comparator.comparingInt(activity -> activity.finish));
+        if (allActivities == null || allActivities.isEmpty()) {
+            return Collections.emptyList();
+        }
+        // Создаем копию списка и сортируем по времени окончания
+        List<Activity> activities = new ArrayList<>(allActivities);
+
+        activities.sort(Comparator.comparingInt(activity -> activity.finish));
         List<Activity> selectedActivities = new ArrayList<>();
-        Activity first = allActivities.get(0);
+        Activity first = activities.get(0);
         int currentEndTime = first.finish;
         selectedActivities.add(first);
 
-        for (int i = 1; i < allActivities.size(); i++) {
-            if (allActivities.get(i).start >= currentEndTime) {
-                currentEndTime = allActivities.get(i).finish;
-                selectedActivities.add(allActivities.get(i));
+        for (int i = 1; i < activities.size(); i++) {
+            if (activities.get(i).start >= currentEndTime) {
+                currentEndTime = activities.get(i).finish;
+                selectedActivities.add(activities.get(i));
             }
         }
         return selectedActivities;
